@@ -27,7 +27,7 @@ export default function usePagination<Data>(arr: Data[] | null) {
     const paginationStart = currentPage * OFFSET
     const paginationEnd = paginationStart + OFFSET
     return arr?.slice(paginationStart, paginationEnd)
-  }, [currentPage])
+  }, [arr, currentPage])
 
   return {
     data,

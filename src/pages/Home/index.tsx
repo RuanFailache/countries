@@ -1,6 +1,8 @@
 import { useEffect } from 'react'
+import { StyledContainer } from '../../components/StyledContainer'
 import usePagination from '../../hooks/usePagination'
 import countryHttpClient from '../../services/httpClients/country'
+import { theme } from '../../utils/theme'
 import CountryCard from './components/CountryCard'
 import { CountryContainer, CountryList } from './styles'
 
@@ -14,23 +16,25 @@ export default function Home() {
     runRequest()
   }, [])
 
-  if (loading || !countries) return null
+  if (loading || !countries) return <div>Carregando...</div>
 
   return (
-    <CountryContainer>
-      <CountryList>
-        {countries.map((country) => (
-          <CountryCard key={country.name} country={country} />
-        ))}
-      </CountryList>
+    <StyledContainer bgColor={theme.colors.dark.background}>
+      <CountryContainer>
+        <CountryList>
+          {countries.map((country) => (
+            <CountryCard key={country.name} country={country} />
+          ))}
+        </CountryList>
 
-      <button type="button" onClick={goToNextPage}>
-        Next
-      </button>
+        <button type="button" onClick={goToNextPage}>
+          Next
+        </button>
 
-      <button type="button" onClick={goToPrevPage}>
-        Prev
-      </button>
-    </CountryContainer>
+        <button type="button" onClick={goToPrevPage}>
+          Prev
+        </button>
+      </CountryContainer>
+    </StyledContainer>
   )
 }

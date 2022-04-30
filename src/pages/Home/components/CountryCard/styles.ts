@@ -4,7 +4,7 @@ import { theme } from '../../../../utils/theme'
 export const CountryCardContainer = styled.li`
   display: block;
   border-radius: 8px;
-  width: 200px;
+  width: calc((1150px - 3 * 32px) / 4);
   background-color: ${theme.colors.dark.element};
 `
 
