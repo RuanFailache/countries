@@ -3,8 +3,13 @@ import Country from '../../../interfaces/country'
 import countryHttpClient from '../../../services/httpClients/country'
 
 const useGetCountries = function () {
-  const [countries, setCountries] = useState<Country[]>([])
   const [loading, setLoading] = useState(false)
+  const [countries, setCountries] = useState<Country[]>([])
+  const [regions, setRegions] = useState<string[]>([])
+  const [filterStates, setFilterStates] = useState({
+    name: '',
+    region: '',
+  })
 
   const fetchCountries = async (callback: (response: Country[]) => void) => {
     setLoading(true)
@@ -23,36 +28,49 @@ const useGetCountries = function () {
     })
   }
 
-  const getCountriesByName = async (name: string) => {
+  const loadAllCountriesAndBuildRegions = async () => {
     fetchCountries((response) => {
-      setCountries(
-        response.filter((country) => {
-          return country.name.includes(name)
-        }),
+      setCountries(response)
+      setRegions(
+        response
+          .map((country) => country.region)
+          .filter((region, index, self) => self.indexOf(region) === index),
       )
     })
   }
 
-  const getCountriesByRegion = async (region: string) => {
+  const filterCountries = (
+    filterType: 'name' | 'region',
+    valueToBeFiltered: string,
+  ) => {
+    setFilterStates({ ...filterStates, [filterType]: valueToBeFiltered })
     fetchCountries((response) => {
       setCountries(
         response.filter((country) => {
-          return country.region === region
+          const filters = {
+            name:
+              country.name.includes(valueToBeFiltered) &&
+              country.region === filterStates.region,
+            region:
+              country.name.includes(filterStates.name) &&
+              country.region === valueToBeFiltered,
+          }
+          return filters[filterType]
         }),
       )
     })
   }
 
   useEffect(() => {
-    getAllCountries()
+    loadAllCountriesAndBuildRegions()
   }, [])
 
   return {
-    countries,
+    regions,
     loading,
+    countries,
     getAllCountries,
-    getCountriesByName,
-    getCountriesByRegion,
+    filterCountries,
   }
 }
 
