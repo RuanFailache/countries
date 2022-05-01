@@ -1,12 +1,7 @@
 import styled from 'styled-components'
 
-export const CountryContainer = styled.div`
+export const HomeContainer = styled.main`
   width: 1150px;
+  min-height: calc(100vh - 70px);
   margin: 0 auto;
-`
-
-export const CountryList = styled.ul`
-  display: flex;
-  gap: 32px;
-  flex-flow: row wrap;
 `

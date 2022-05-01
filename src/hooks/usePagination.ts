@@ -26,7 +26,7 @@ export default function usePagination<Data>(arr: Data[] | null) {
   const data = useMemo(() => {
     const paginationStart = currentPage * OFFSET
     const paginationEnd = paginationStart + OFFSET
-    return arr?.slice(paginationStart, paginationEnd)
+    return arr?.slice(paginationStart, paginationEnd) ?? []
   }, [arr, currentPage])
 
   return {

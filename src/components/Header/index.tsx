@@ -1,14 +1,14 @@
 import { theme } from '../../utils/theme'
 import { StyledContainer } from '../StyledContainer'
-import { HeaderContainer } from './styles'
+import * as StyledComponent from './styles'
 
 export default function Header() {
   return (
     <StyledContainer bgColor={theme.colors.dark.element}>
-      <HeaderContainer>
+      <StyledComponent.HeaderContainer>
         <h1>Where in the world?</h1>
         <button type="button">Dark Mode</button>
-      </HeaderContainer>
+      </StyledComponent.HeaderContainer>
     </StyledContainer>
   )
 }

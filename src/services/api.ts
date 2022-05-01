@@ -1,5 +1,4 @@
-import axios, { AxiosRequestConfig } from 'axios'
-import { useState } from 'react'
+import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
 
 interface HttpClientStates<RequestOutput> {
   loading: boolean
@@ -11,35 +10,15 @@ const instance = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
 })
 
-const useHttpClient = function <RequestOutput>(request: AxiosRequestConfig) {
-  const [states, setStates] = useState<HttpClientStates<RequestOutput>>({
-    data: null,
-    error: null,
-    loading: false,
-  })
-
-  const runRequest = async function () {
-    setStates((prevStates) => {
-      return { ...prevStates, loading: true }
-    })
-
-    try {
-      const response = await instance(request)
-      setStates((prevStates) => {
-        return { ...prevStates, error: null, data: response.data }
-      })
-    } catch (err) {
-      setStates((prevStates) => {
-        return { ...prevStates, error: err, data: null }
-      })
-    }
-
-    setStates((prevStates) => {
-      return { ...prevStates, loading: false }
-    })
+const useHttpClient = async function <RequestOutput>(
+  request: AxiosRequestConfig,
+) {
+  try {
+    const response: AxiosResponse<RequestOutput> = await instance(request)
+    return response.data
+  } catch (err) {
+    throw (err as AxiosError).response
   }
-
-  return { runRequest, states }
 }
 
 export default useHttpClient

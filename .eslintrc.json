@@ -7,8 +7,8 @@
     "airbnb",
     "plugin:react/recommended",
     "plugin:react/jsx-runtime",
-    "plugin:prettier/recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -20,6 +20,8 @@
   },
   "plugins": ["react", "prettier", "react-hooks", "@typescript-eslint"],
   "rules": {
+    "comma-dangle": 0,
+    "@typescript-eslint/comma-dangle": "off",
     "import/extensions": 0,
     "import/no-unresolved": "error",
     "import/prefer-default-export": 0,

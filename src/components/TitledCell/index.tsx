@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react'
-import { TitledCellStyle } from './styles'
+import * as StyledComponent from './styles'
 
 interface TitledCellProps {
   title: string
@@ -11,9 +11,9 @@ const TitledCell: FunctionComponent<TitledCellProps> = function ({
   subtitle,
 }) {
   return (
-    <TitledCellStyle>
+    <StyledComponent.TitledCell>
       <strong>{title}:</strong> {subtitle}
-    </TitledCellStyle>
+    </StyledComponent.TitledCell>
   )
 }
 
