@@ -11,6 +11,8 @@ interface CountriesProps {
 const Countries: FunctionComponent<CountriesProps> = function ({ countries }) {
   const {
     data: paginatedCountries,
+    currentPage,
+    totalPages,
     goToNextPage,
     goToPrevPage,
   } = usePagination(countries)
@@ -26,6 +28,10 @@ const Countries: FunctionComponent<CountriesProps> = function ({ countries }) {
       <button type="button" onClick={goToPrevPage}>
         Prev
       </button>
+
+      <p>
+        {currentPage + 1} of {totalPages}
+      </p>
 
       <button type="button" onClick={goToNextPage}>
         Next
