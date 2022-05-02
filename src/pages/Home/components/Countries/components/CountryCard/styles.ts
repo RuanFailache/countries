@@ -6,6 +6,11 @@ export const CountryCardContainer = styled.li`
   border-radius: 8px;
   width: calc((1150px - 3 * 32px) / 4);
   background-color: ${theme.colors.dark.element};
+  cursor: pointer;
+
+  &:hover {
+    filter: brightness(90%);
+  }
 `
 
 export const CountryCardFlag = styled.img`

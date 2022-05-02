@@ -1,4 +1,5 @@
 import { FunctionComponent } from 'react'
+import { useNavigate } from 'react-router-dom'
 import TitledCell from '../../../../../../components/TitledCell'
 import Country from '../../../../../../interfaces/country'
 import formatNumber2Comma from '../../../../../../utils/formatNumber2Comma'
@@ -11,8 +12,12 @@ interface CountryCardsProps {
 const CountryCard: FunctionComponent<CountryCardsProps> = function ({
   country,
 }) {
+  const navigate = useNavigate()
+
   return (
-    <StyledComponent.CountryCardContainer>
+    <StyledComponent.CountryCardContainer
+      onClick={() => navigate(`/country/${country.name}`)}
+    >
       <StyledComponent.CountryCardFlag src={country.flag} alt={country.name} />
       <StyledComponent.CountryCardInfo>
         <h3>{country.name}</h3>

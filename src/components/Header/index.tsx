@@ -7,7 +7,7 @@ export default function Header() {
   return (
     <Container bgColor={theme.colors.dark.element}>
       <StyledComponent.HeaderContainer>
-        <StyledComponent.HeaderTitle>
+        <StyledComponent.HeaderTitle to="/">
           Where in the world?
         </StyledComponent.HeaderTitle>
         <StyledComponent.HeaderButton type="button">
