@@ -9,7 +9,7 @@ const countryHttpClient = {
     })
   },
   getCountryByName: (name: string) => {
-    return useHttpClient<Country>({
+    return useHttpClient<Country[]>({
       url: `/name/${name}`,
       method: 'get',
     })
