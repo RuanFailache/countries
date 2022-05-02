@@ -1,3 +1,4 @@
+import { FaMoon } from 'react-icons/fa'
 import { theme } from '../../utils/theme'
 import { StyledContainer } from '../StyledContainer'
 import * as StyledComponent from './styles'
@@ -7,7 +8,10 @@ export default function Header() {
     <StyledContainer bgColor={theme.colors.dark.element}>
       <StyledComponent.HeaderContainer>
         <h1>Where in the world?</h1>
-        <button type="button">Dark Mode</button>
+        <button type="button">
+          <FaMoon />
+          Dark Mode
+        </button>
       </StyledComponent.HeaderContainer>
     </StyledContainer>
   )

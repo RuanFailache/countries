@@ -22,13 +22,7 @@ const useGetCountries = function () {
     setLoading(false)
   }
 
-  const getAllCountries = async () => {
-    fetchCountries((response) => {
-      setCountries(response)
-    })
-  }
-
-  const loadAllCountriesAndBuildRegions = async () => {
+  const getAllCountriesAndBuildRegions = async () => {
     fetchCountries((response) => {
       setCountries(response)
       setRegions(
@@ -48,11 +42,18 @@ const useGetCountries = function () {
       setCountries(
         response.filter((country) => {
           const filters = {
-            name:
-              country.name.includes(valueToBeFiltered) &&
-              country.region === filterStates.region,
+            name: !filterStates.region
+              ? country.name
+                  .toLowerCase()
+                  .includes(valueToBeFiltered.toLowerCase())
+              : country.name
+                  .toLowerCase()
+                  .includes(valueToBeFiltered.toLowerCase()) &&
+                country.region === filterStates.region,
             region:
-              country.name.includes(filterStates.name) &&
+              country.name
+                .toLowerCase()
+                .includes(filterStates.name.toLowerCase()) &&
               country.region === valueToBeFiltered,
           }
           return filters[filterType]
@@ -62,14 +63,13 @@ const useGetCountries = function () {
   }
 
   useEffect(() => {
-    loadAllCountriesAndBuildRegions()
+    getAllCountriesAndBuildRegions()
   }, [])
 
   return {
     regions,
     loading,
     countries,
-    getAllCountries,
     filterCountries,
   }
 }

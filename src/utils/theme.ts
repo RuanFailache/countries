@@ -9,6 +9,9 @@ export const theme = {
       text: 'hsl(200, 15%, 8%)',
       background: 'hsl(0, 0%, 98%)',
     },
-    white: 'hsl(0, 0%, 100%)',
+    neutral: {
+      white: 'hsl(0, 0%, 100%)',
+      whiteWithOpacity: 'hsla(0, 0%, 100%, .7)',
+    },
   },
 }

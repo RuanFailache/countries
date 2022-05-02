@@ -1,5 +1,9 @@
 import { FunctionComponent } from 'react'
 import { Controller, useForm } from 'react-hook-form'
+import { FaSearch } from 'react-icons/fa'
+import Select from '../../../../components/Select'
+import { theme } from '../../../../utils/theme'
+import * as StyledComponent from './styles'
 
 interface CountriesSearchFormProps {
   regions: string[]
@@ -22,35 +26,31 @@ const CountriesSearchForm: FunctionComponent<CountriesSearchFormProps> =
     })
 
     return (
-      <form>
+      <StyledComponent.SearchContainer>
         <Controller
           name="name"
           control={control}
           render={({ field }) => (
-            <input
-              value={field.value}
-              onChange={(event) => {
-                field.onChange(event)
-                filterCountries('name', event.target.value)
-              }}
-            />
+            <StyledComponent.SearchInputContainer>
+              <FaSearch color={theme.colors.neutral.white} />
+              <StyledComponent.SearchInputText
+                placeholder="Search for a country..."
+                value={field.value}
+                onChange={(event) => {
+                  field.onChange(event)
+                  filterCountries('name', event.target.value)
+                }}
+              />
+            </StyledComponent.SearchInputContainer>
           )}
         />
 
-        <select
-          defaultValue=""
-          onChange={(e) => filterCountries('region', e.target.value)}
-        >
-          <option value="" disabled>
-            Selecione uma opção
-          </option>
-          {regions.map((region) => (
-            <option key={region} value={region}>
-              {region}
-            </option>
-          ))}
-        </select>
-      </form>
+        <Select
+          defaultValue="Filter by Region"
+          options={regions}
+          onSelect={(option) => filterCountries('region', option)}
+        />
+      </StyledComponent.SearchContainer>
     )
   }
 
