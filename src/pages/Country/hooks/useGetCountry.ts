@@ -1,49 +1,25 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Country from '../../../interfaces/country'
 import countryHttpClient from '../../../services/httpClients/country'
-import formatNumber2Comma from '../../../utils/formatNumber2Comma'
 
 export default function useGetCountryByName(name?: string) {
   const [loading, setLoading] = useState(false)
   const [country, setCountry] = useState<Country>()
+  const [borderCountries, setBorderCountries] = useState<Country[]>([])
 
-  const countryCells = useMemo(() => {
-    if (!country) return []
-    return [
-      {
-        title: 'Native Name',
-        subtitle: country.nativeName,
-      },
-      {
-        title: 'Population',
-        subtitle: formatNumber2Comma(country.population),
-      },
-      {
-        title: 'Region',
-        subtitle: country.region,
-      },
-      {
-        title: 'Sub Region',
-        subtitle: country.subregion,
-      },
-      {
-        title: 'Capital',
-        subtitle: country.capital,
-      },
-      {
-        title: 'Top Level Domain',
-        subtitle: country.topLevelDomain.join(', '),
-      },
-      {
-        title: 'Currencies',
-        subtitle: country.currencies.map((curr) => curr.name).join(', '),
-      },
-      {
-        title: 'Languages',
-        subtitle: country.languages.map((lan) => lan.name).join(', '),
-      },
-    ]
-  }, [country])
+  const getBorderCountries = async () => {
+    try {
+      if (!country) {
+        throw new Error('Empty Country body')
+      }
+      const response = await countryHttpClient.getCountriesByCode(
+        country.borders,
+      )
+      setBorderCountries(response)
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
   const fetchCountryByName = async (countryName?: string) => {
     setLoading(false)
@@ -62,9 +38,13 @@ export default function useGetCountryByName(name?: string) {
     fetchCountryByName(name)
   }, [name])
 
+  useEffect(() => {
+    getBorderCountries()
+  }, [country])
+
   return {
     country,
     loading,
-    countryCells,
+    borderCountries,
   }
 }

@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { theme } from '../../utils/theme'
 import { Button } from '../Button'
@@ -12,7 +11,7 @@ export const HeaderContainer = styled.div`
   margin: 0 auto;
 `
 
-export const HeaderTitle = styled(Link)`
+export const HeaderTitle = styled.strong`
   font-size: 20px;
   line-height: 24px;
   font-weight: bold;

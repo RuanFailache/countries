@@ -14,6 +14,11 @@ const countryHttpClient = {
       method: 'get',
     })
   },
+  getCountriesByCode: (codes: string[]) => {
+    return useHttpClient<Country[]>({
+      url: `/alpha?codes=${codes.join(',')}`,
+    })
+  },
 }
 
 export default countryHttpClient
