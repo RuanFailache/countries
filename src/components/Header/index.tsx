@@ -7,11 +7,13 @@ export default function Header() {
   return (
     <StyledContainer bgColor={theme.colors.dark.element}>
       <StyledComponent.HeaderContainer>
-        <h1>Where in the world?</h1>
-        <button type="button">
+        <StyledComponent.HeaderTitle>
+          Where in the world?
+        </StyledComponent.HeaderTitle>
+        <StyledComponent.HeaderButton type="button">
           <FaMoon />
-          Dark Mode
-        </button>
+          <span>Dark Mode</span>
+        </StyledComponent.HeaderButton>
       </StyledComponent.HeaderContainer>
     </StyledContainer>
   )
