@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { theme } from '../../utils/theme'
+import { Button } from '../Button'
 
 export const HeaderContainer = styled.div`
   display: flex;
@@ -17,11 +18,7 @@ export const HeaderTitle = styled.h1`
   color: ${theme.colors.neutral.white};
 `
 
-export const HeaderButton = styled.button`
+export const HeaderButton = styled(Button)`
   display: flex;
   gap: 12px;
-  border: none;
-  font-size: 16px;
-  color: ${theme.colors.neutral.white};
-  background-color: transparent;
 `
