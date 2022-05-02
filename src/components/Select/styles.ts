@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { theme } from '../../utils/theme'
+import { Button } from '../Button'
 
 export const SelectContainer = styled.div`
   display: block;
@@ -7,15 +8,11 @@ export const SelectContainer = styled.div`
   position: relative;
 `
 
-export const SelectBox = styled.button`
+export const SelectBox = styled(Button)`
   display: flex;
+  align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 16px;
-  border: none;
-  border-radius: 8px;
-  color: ${theme.colors.neutral.white};
-  background-color: ${theme.colors.dark.element};
 `
 
 export const Dropdown = styled.ul`
@@ -32,10 +29,12 @@ export const Dropdown = styled.ul`
 export const DropdownItem = styled.li`
   color: ${theme.colors.neutral.white};
   padding: 16px;
+  cursor: pointer;
 
   &:hover {
     border-radius: 8px;
-    background-color: red;
+    background: inherit;
+    filter: brightness(90%);
   }
 
   &:first-child {

@@ -1,4 +1,4 @@
-import { StyledContainer } from '../../components/StyledContainer'
+import { Container } from '../../components/Container'
 import { theme } from '../../utils/theme'
 import Countries from './components/Countries'
 import CountriesSearchForm from './components/CountriesSearchForm'
@@ -9,7 +9,7 @@ export default function Home() {
   const { regions, loading, countries, filterCountries } = useGetCountries()
 
   return (
-    <StyledContainer bgColor={theme.colors.dark.background}>
+    <Container bgColor={theme.colors.dark.background}>
       <StyledComponent.HomeContainer>
         <CountriesSearchForm
           regions={regions}
@@ -21,6 +21,6 @@ export default function Home() {
           <Countries countries={countries} />
         )}
       </StyledComponent.HomeContainer>
-    </StyledContainer>
+    </Container>
   )
 }

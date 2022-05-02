@@ -6,12 +6,12 @@ export default function usePagination<Data>(arr: Data[] | null) {
   const [currentPage, setCurrentPage] = useState(0)
 
   const totalPages = useMemo(() => {
-    return arr ? Math.ceil(arr.length / 20) : 1
+    return arr ? Math.ceil(arr.length / OFFSET) : 1
   }, [arr])
 
   const goToNextPage = () => {
     setCurrentPage((curr) => {
-      if (arr && curr < Math.floor(arr.length / 20)) {
+      if (arr && curr + 1 < totalPages) {
         return curr + 1
       }
       return curr

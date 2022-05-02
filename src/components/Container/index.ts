@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 
-interface StyledContainerProps {
+interface ContainerProps {
   bgColor: string
 }
 
-export const StyledContainer = styled.div<StyledContainerProps>`
+export const Container = styled.div<ContainerProps>`
   width: 100%;
   background-color: ${(props) => props.bgColor};
 `

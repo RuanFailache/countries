@@ -25,17 +25,25 @@ const Countries: FunctionComponent<CountriesProps> = function ({ countries }) {
         ))}
       </StyledComponent.CountryList>
 
-      <button type="button" onClick={goToPrevPage}>
-        Prev
-      </button>
+      <StyledComponent.CountryPaginationContainer>
+        <StyledComponent.CountryPaginationButton
+          type="button"
+          onClick={goToPrevPage}
+        >
+          Prev
+        </StyledComponent.CountryPaginationButton>
 
-      <p>
-        {currentPage + 1} of {totalPages}
-      </p>
+        <StyledComponent.CountryPaginationText>
+          {currentPage + 1} of {totalPages}
+        </StyledComponent.CountryPaginationText>
 
-      <button type="button" onClick={goToNextPage}>
-        Next
-      </button>
+        <StyledComponent.CountryPaginationButton
+          type="button"
+          onClick={goToNextPage}
+        >
+          Next
+        </StyledComponent.CountryPaginationButton>
+      </StyledComponent.CountryPaginationContainer>
     </>
   )
 }

@@ -18,4 +18,20 @@ export const CountryCardFlag = styled.img`
 
 export const CountryCardInfo = styled.div`
   padding: 16px;
+
+  h3 {
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: bold;
+    color: ${theme.colors.neutral.white};
+    margin-bottom: 16px;
+    max-width: 80%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  p + p {
+    margin-top: 8px;
+  }
 `
